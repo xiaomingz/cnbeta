@@ -85,22 +85,16 @@ public class NewsDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                       int viewType) {
         if (viewType == TYPE_ITEM){
-//            View v = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.adapter_comment, parent, false);
-//            ItemViewHolder vh = new ItemViewHolder(v);
-
             final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             return new ItemViewHolder(
                     MaterialRippleLayout.on(inflater.inflate(R.layout.adapter_comment, parent, false))
                             .rippleOverlay(true)
                             .rippleAlpha(0.2f)
                             .rippleColor(0xFF585858)
-//                            .rippleColor(R.color.colorRipple)
                             .rippleHover(true)
                             .create()
             );
 
-//            return vh;
         }else {
 
             View v = LayoutInflater.from(parent.getContext())
@@ -124,8 +118,6 @@ public class NewsDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder viewHolder = (ItemViewHolder) holder;
 
-//            LogUtils.i("onBindViewHolder", "进入:" + position);
-
             String refContent = comment.getRefContent();
             if (refContent != null && !refContent.isEmpty()){
                 viewHolder.mCommentRef.setVisibility(View.VISIBLE);
@@ -148,17 +140,13 @@ public class NewsDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
             if (mWebView == null) {
                 mWebView = new WebView(BaseApplication.context());
-//                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-//                    mWebView.setLayoutParams(lp);
                 initWebView(mWebView);
                 mWebView.loadDataWithBaseURL(Constant.BASEURL, comment.getRefContent(), "text/html", "UTF-8", null);//utf-8
                 viewHolder.mWebContent.addView(mWebView);
-//
             }
 
             mWebContent = viewHolder.mWebContent;
 
-//            LogUtils.i("onBindViewHolder","进入:" + position);
         }
     }
 
@@ -192,8 +180,6 @@ public class NewsDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-//        @Bind(R.id.content)
-//        LinearLayout mContent;
         @Bind(R.id.comment_name)
         TextView mCommentName;
         @Bind(R.id.comment_from)
@@ -276,7 +262,6 @@ public class NewsDetailRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
             if (mNewsDetailCallBack != null){
                 mNewsDetailCallBack.onNewsLoadFinish();
             }
-//            mWebView.setVisibility(View.VISIBLE);
         }
 
     }
